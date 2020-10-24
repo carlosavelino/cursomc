@@ -5,31 +5,33 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ItemPedido implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	@JsonIgnore
 	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
 	
-	
-	private Double dessconto;
-	private Integer qunatidade;
+	private Double desconto;
+	private Integer quantidade;
 	private Double preco;
 	
 	public ItemPedido() {
 	}
 
-	public ItemPedido(Pedido pedido, Produto produto, Double dessconto, Integer qunatidade, Double preco) {
+	public ItemPedido(Pedido pedido, Produto produto, Double desconto, Integer quantidade, Double preco) {
 		super();
 		id.setPedido(pedido);
 		id.setProduto(produto);
-		this.dessconto = dessconto;
-		this.qunatidade = qunatidade;
+		this.desconto = desconto;
+		this.quantidade = quantidade;
 		this.preco = preco;
 	}
-	
+
+	@JsonIgnore
 	public Pedido getPedido() {
 		return id.getPedido();
 	}
@@ -46,20 +48,20 @@ public class ItemPedido implements Serializable {
 		this.id = id;
 	}
 
-	public Double getDessconto() {
-		return dessconto;
+	public Double getDesconto() {
+		return desconto;
 	}
 
-	public void setDessconto(Double dessconto) {
-		this.dessconto = dessconto;
+	public void setDesconto(Double desconto) {
+		this.desconto = desconto;
 	}
 
-	public Integer getQunatidade() {
-		return qunatidade;
+	public Integer getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQunatidade(Integer qunatidade) {
-		this.qunatidade = qunatidade;
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public Double getPreco() {
@@ -94,6 +96,5 @@ public class ItemPedido implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
 }
